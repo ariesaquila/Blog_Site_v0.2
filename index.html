@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahmet Gül | Kişisel Blog & Portfolyo</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
     <style>
-       
+        /* Detay açılış animasyonu */
         details[open] summary ~ * {
             animation: fadeIn 0.4s ease-in-out;
         }
@@ -17,43 +21,71 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-yellow-200">
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-950 dark:text-gray-200 font-sans antialiased selection:bg-yellow-200 dark:selection:bg-yellow-900 transition-colors duration-300">
 
-    <!-- NAVBAR -->
-    <nav class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 transition-all">
-        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold text-black tracking-wider hover:opacity-80 transition">Ahmet Gül</a>
-            <div class="space-x-6 text-sm font-medium flex items-center">
-                <a href="#hakkimda" class="text-gray-600 hover:text-yellow-600 transition">Hakkımda</a>
-                <a href="#yetkinlikler" class="text-gray-600 hover:text-yellow-600 transition">Yetkinlikler</a>
-                <a href="#blog" class="text-gray-600 hover:text-yellow-600 transition">Projeler</a>
+    <nav class="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm sticky top-0 z-50 transition-colors duration-300">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold text-black dark:text-white tracking-wider hover:opacity-80 transition">Ahmet Gül</a>
+            
+            <div class="hidden lg:flex space-x-6 text-sm font-medium items-center">
+                <a href="#hakkimda" class="text-gray-600 dark:text-gray-300 hover:text-yellow-600 dark:hover:text-yellow-400 transition">Hakkımda</a>
+                <a href="#yetkinlikler" class="text-gray-600 dark:text-gray-300 hover:text-yellow-600 dark:hover:text-yellow-400 transition">Yetkinlikler</a>
+                <a href="#blog" class="text-gray-600 dark:text-gray-300 hover:text-yellow-600 dark:hover:text-yellow-400 transition">Projeler</a>
                 <a href="#iletisim" class="bg-yellow-500 text-black px-4 py-2 rounded-full hover:bg-yellow-600 transition shadow-sm font-semibold">İletişim</a>
             </div>
+
+            <div class="flex items-center space-x-3">
+                <button id="theme-toggle" class="p-2 rounded-xl bg-gray-100 border border-gray-200 hover:bg-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 hover:ring-2 hover:ring-yellow-400 transition focus:outline-none flex items-center justify-center" aria-label="Tema Değiştir">
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-gray-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+
+                <button id="menu-toggle" class="lg:hidden p-2 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 px-6 py-4 space-y-3 transition-all">
+            <a href="#hakkimda" class="block text-gray-600 dark:text-gray-300 hover:text-yellow-600 font-medium">Hakkımda</a>
+            <a href="#yetkinlikler" class="block text-gray-600 dark:text-gray-300 hover:text-yellow-600 font-medium">Yetkinlikler</a>
+            <a href="#blog" class="block text-gray-600 dark:text-gray-300 hover:text-yellow-600 font-medium">Projeler</a>
+            <a href="#iletisim" class="block text-center bg-yellow-500 text-black px-4 py-2 rounded-xl hover:bg-yellow-600 font-semibold shadow-sm">İletişim</a>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <header id="hakkimda" class="w-full max-w-5xl mx-auto px-6 py-16 lg:py-24"> 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <!-- Metin Alanı -->
-            <div class="lg:col-span-7 space-y-6">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.15] text-gray-900">
-                    <span class="bg-yellow-300 px-2 font-extrabold text-black inline-block my-2 lg:mt-0">Ahmet GÜL,</span> 
+    <header id="hakkimda" class="w-full max-w-5xl mx-auto px-6 py-10 lg:py-24"> 
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div class="lg:col-span-7 space-y-6 order-2 lg:order-1 text-center lg:text-left">
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.2] text-gray-900 dark:text-white">
+                    <span class="bg-yellow-300 px-2 font-extrabold text-black inline-block my-1">Ahmet GÜL,</span> 
                     <span class="font-extrabold block sm:inline"> teknolojiye, yazılıma ve sistem yönetimine</span> tutkuyla bağlı bir bilgisayar programcılığı öğrencisiyim.
                 </h1>
-                <p class="text-gray-600 text-lg max-w-xl">
-                    Geliştirme süreçlerinde kod yazmanın ötesine geçerek yerel sunucu mimarileri, ağ yapılandırmaları ve açık kaynaklı projelerle ilgileniyorum. Dijital dünyada kalıcı çözümler üretmeyi hedefliyorum.
+                <p class="text-gray-600 dark:text-gray-400 text-base md:text-lg max-w-xl mx-auto lg:mx-0">
+                    Geliştirme süreçlerinde kod yazmanın ötesine geçerek yerel sunucu mimarileri, ağ yapılandırmaları ve açık kaynaklı projelerle ilgileniyorum.
                 </p>
-                <!-- Sosyal Medya Butonları -->
-                <div class="flex space-x-4 pt-2">
-                    <a href="https://github.com/ariesaquila" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-gray-900 text-white rounded-xl hover:bg-gray-800 font-medium transition text-sm shadow-sm">GitHub</a>
+                <div class="flex justify-center lg:justify-start space-x-4 pt-2">
+                    <a href="https://github.com/ariesaquila" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-gray-900 text-white dark:bg-gray-800 dark:hover:bg-gray-700 rounded-xl hover:bg-gray-800 font-medium transition text-sm shadow-sm">GitHub</a>
                     <a href="https://www.linkedin.com/in/ahmet-g-46tr46/" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-yellow-300 text-black rounded-xl hover:bg-yellow-400 font-medium transition text-sm shadow-sm">LinkedIn</a>
                 </div>
             </div>
 
-            <!-- Profil Görseli -->
-            <div class="lg:col-span-5 w-full flex justify-center lg:justify-end">
-                <div class="w-full max-w-[380px] aspect-[4/5] bg-gray-200 rounded-2xl overflow-hidden shadow-md relative group">
+            <div class="lg:col-span-5 w-full flex justify-center lg:justify-end order-1 lg:order-2">
+                <div class="w-full max-w-[280px] sm:max-w-[350px] aspect-[4/5] bg-gray-200 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md relative group">
                     <img src="https://i.hizliresim.com/t9ndkxr.jpg" 
                          alt="Ahmet Gül Profil" 
                          class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out scale-105 group-hover:scale-100">
@@ -62,164 +94,170 @@
         </div>
     </header>
     
-    <hr class="max-w-5xl mx-auto border-gray-200/80">
+    <hr class="max-w-5xl mx-auto border-gray-200 dark:border-gray-800">
 
-    <!-- YETKİNLİKLER -->
-    <section id="yetkinlikler" class="max-w-5xl mx-auto px-6 py-16">
+    <section id="yetkinlikler" class="max-w-5xl mx-auto px-6 py-12 lg:py-16">
         <div class="mb-8">
-            <h2 class="text-2xl font-bold text-gray-950 tracking-tight">Teknoloji & Araçlar</h2>
-            <p class="text-gray-500 text-sm mt-1">Geliştirme yaparken ve sistemleri ayağa kaldırırken aktif kullandığım yapılar.</p>
+            <h2 class="text-2xl font-bold text-gray-950 dark:text-white tracking-tight">Teknoloji & Araçlar</h2>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Geliştirme yaparken ve sistemleri ayağa kaldırırken aktif kullandığım yapılar.</p>
         </div>
-        <div class="flex flex-wrap gap-2.5">
-            <span class="px-3.5 py-1.5 bg-white border border-gray-200 text-gray-700 rounded-xl text-sm font-medium hover:border-yellow-400 transition cursor-default">C# / .NET</span>
-            <span class="px-3.5 py-1.5 bg-white border border-gray-200 text-gray-700 rounded-xl text-sm font-medium hover:border-yellow-400 transition cursor-default">Java</span>
-            <span class="px-3.5 py-1.5 bg-white border border-gray-200 text-gray-700 rounded-xl text-sm font-medium hover:border-yellow-400 transition cursor-default">Python</span>
-            <span class="px-3.5 py-1.5 bg-white border border-gray-200 text-gray-700 rounded-xl text-sm font-medium hover:border-yellow-400 transition cursor-default">TypeScript</span>
-            <span class="px-3.5 py-1.5 bg-white border border-gray-200 text-gray-700 rounded-xl text-sm font-medium hover:border-yellow-400 transition cursor-default">Kotlin</span>
-            <span class="px-3.5 py-1.5 bg-white border border-gray-200 text-gray-700 rounded-xl text-sm font-medium hover:border-yellow-400 transition cursor-default">SQL / Veritabanı</span>
-            <span class="px-3.5 py-1.5 bg-white border border-gray-200 text-gray-700 rounded-xl text-sm font-medium hover:border-yellow-400 transition cursor-default">Docker & Konteynerizasyon</span>
-            <span class="px-3.5 py-1.5 bg-white border border-gray-200 text-gray-700 rounded-xl text-sm font-medium hover:border-yellow-400 transition cursor-default">Ağ Tünelleme (Playit.gg vb.)</span>
-            <span class="px-3.5 py-1.5 bg-white border border-gray-200 text-gray-700 rounded-xl text-sm font-medium hover:border-yellow-400 transition cursor-default">HTML5 / Tailwind CSS</span>
+        <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 rounded-xl text-xs md:text-sm font-medium hover:border-yellow-400 dark:hover:border-yellow-500 transition cursor-default">C# / .NET</span>
+            <span class="px-3 py-1.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 rounded-xl text-xs md:text-sm font-medium hover:border-yellow-400 dark:hover:border-yellow-500 transition cursor-default">Java</span>
+            <span class="px-3 py-1.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 rounded-xl text-xs md:text-sm font-medium hover:border-yellow-400 dark:hover:border-yellow-500 transition cursor-default">Python</span>
+            <span class="px-3 py-1.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 rounded-xl text-xs md:text-sm font-medium hover:border-yellow-400 dark:hover:border-yellow-500 transition cursor-default">SQL / Veritabanı</span>
+            <span class="px-3 py-1.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 rounded-xl text-xs md:text-sm font-medium hover:border-yellow-400 dark:hover:border-yellow-500 transition cursor-default">Docker & Konteynerizasyon</span>
+            <span class="px-3 py-1.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 rounded-xl text-xs md:text-sm font-medium hover:border-yellow-400 dark:hover:border-yellow-500 transition cursor-default">CasaOS / Ev Sunucu Yönetimi</span>
+            <span class="px-3 py-1.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 rounded-xl text-xs md:text-sm font-medium hover:border-yellow-400 dark:hover:border-yellow-500 transition cursor-default">Ağ Tünelleme (Playit.gg)</span>
+            <span class="px-3 py-1.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 rounded-xl text-xs md:text-sm font-medium hover:border-yellow-400 dark:hover:border-yellow-500 transition cursor-default">HTML5 / Tailwind CSS</span>
         </div>
     </section>
 
-    <hr class="max-w-5xl mx-auto border-gray-200/80">
+    <hr class="max-w-5xl mx-auto border-gray-200 dark:border-gray-800">
 
-    <!-- PROJELER SECTION -->
-    <main id="blog" class="max-w-5xl mx-auto px-6 py-16">
-        <div class="mb-12">
-            <h2 class="text-3xl font-bold text-gray-950 tracking-tight">Öne Çıkan Çalışmalar</h2>
-            <p class="text-gray-500 mt-2">Geliştirdiğim projeler, dahil olduğum ekipler ve teknik deneyimlerim.</p>
+    <main id="blog" class="max-w-5xl mx-auto px-6 py-12 lg:py-16">
+        <div class="mb-10">
+            <h2 class="text-3xl font-bold text-gray-950 dark:text-white tracking-tight">Öne Çıkan Çalışmalar</h2>
+            <p class="text-gray-500 dark:text-gray-400 mt-2">Geliştirdiğim projeler, dahil olduğum ekipler ve teknik deneyimlerim.</p>
         </div>
 
-        <!-- Kartlar Izgarası -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <!-- 1. Proje Kartı -->
-            <details class="group relative overflow-hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md select-none">
-                <img src="https://i.hizliresim.com/bjr7qol.jpg" 
-                     alt="OpenTune Arka Plan" 
-                     class="absolute inset-0 w-full h-full object-cover opacity-[0.06] pointer-events-none z-0 transition-transform duration-500 group-hover:scale-105" />
-                
+            <details class="group relative overflow-hidden bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md select-none">
+                <img src="https://i.hizliresim.com/bjr7qol.jpg" alt="OpenTune Arka Plan" class="absolute inset-0 w-full h-full object-cover opacity-[0.06] pointer-events-none z-0 transition-transform duration-500 group-hover:scale-105" />
                 <summary class="relative z-10 focus:outline-none cursor-pointer list-none space-y-4">
-                    <div>
-                        <span class="text-xs font-semibold uppercase tracking-wider text-purple-700 bg-purple-50 px-2.5 py-1 rounded-lg">
-                            Açık Kaynak
-                        </span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 group-hover:text-yellow-600 transition">
-                        OpenTune: Material 3 YouTube Music Uygulaması
-                    </h3>
-                    <p class="text-gray-600 text-sm leading-relaxed group-open:hidden line-clamp-3">
-                        Android işletim sistemi için geliştirilen, reklamsız, arka planda çalma destekli ve dinamik renk temalarına sahip açık kaynak kodlu müzik projesi.
-                    </p>
+                    <div><span class="text-xs font-semibold uppercase tracking-wider text-purple-700 bg-purple-50 dark:text-purple-300 dark:bg-purple-950 px-2.5 py-1 rounded-lg">Açık Kaynak</span></div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition">OpenTune: Material 3 YouTube Music</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed group-open:hidden line-clamp-3">Android için geliştirilen, reklamsız, arka planda çalma destekli ve dinamik renk temalarına sahip açık kaynak kodlu müzik projesi.</p>
                 </summary>
-
-                <div class="relative z-10 mt-4 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4 space-y-2">
-                    <p>
-                        06 Ocak 2025 tarihi itibarıyla katkı sunmaya başladığım OpenTune, kullanıcılara tamamen reklamsız ve dinamik Material You arayüzü sunan modern bir müzik deneyimi sunmayı hedefler.
-                    </p>
-                    <p>
-                        Açık kaynak kod yapısı sayesinde topluluk odaklı ve şeffaf bir geliştirme sürecine sahiptir.
-                    </p>
-                    <p class="pt-2">
-                        <a href="https://github.com/Arturo254/OpenTune" target="_blank" rel="noopener noreferrer" class="text-yellow-600 hover:text-yellow-700 font-medium inline-flex items-center gap-1">GitHub Kodlarını İncele &rarr;</a>
-                    </p>
+                <div class="relative z-10 mt-4 text-gray-600 dark:text-gray-300 text-sm leading-relaxed border-t border-gray-100 dark:border-gray-800 pt-4 space-y-2">
+                    <p>06 Ocak 2025 tarihi itibarıyla katkı sunmaya başladığım OpenTune, kullanıcılara tamamen reklamsız ve dinamik Material You arayüzü sunan modern bir müzik deneyimi sunmayı hedefler.</p>
+                    <p><a href="https://github.com/Arturo254/OpenTune" target="_blank" rel="noopener noreferrer" class="text-yellow-600 dark:text-yellow-400 hover:underline font-medium inline-flex items-center gap-1">GitHub Kodlarını İncele &rarr;</a></p>
                 </div>
-
-                <div class="relative z-10 mt-4 pt-3 flex items-center justify-between text-xs text-gray-400 font-medium border-t border-gray-100">
+                <div class="relative z-10 mt-4 pt-3 flex items-center justify-between text-xs text-gray-400 dark:text-gray-500 font-medium border-t border-gray-100 dark:border-gray-800">
                     <span>Ocak 2025 - Günümüz</span>
-                    <span class="text-yellow-600 font-semibold group-open:hidden">Detaylar &darr;</span>
+                    <span class="text-yellow-600 dark:text-yellow-400 font-semibold group-open:hidden">Detaylar &darr;</span>
                 </div>
             </details>
 
-            <!-- 2. Proje Kartı -->
-            <details class="group relative overflow-hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md select-none">
-                <img src="https://i.hizliresim.com/1mq3mwh.png" 
-                     alt="Teknofest Arka Plan" 
-                     class="absolute inset-0 w-full h-full object-cover opacity-[0.06] pointer-events-none z-0 transition-transform duration-500 group-hover:scale-105" />
-                
+            <details class="group relative overflow-hidden bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md select-none">
+                <img src="https://i.hizliresim.com/1mq3mwh.png" alt="Teknofest Arka Plan" class="absolute inset-0 w-full h-full object-cover opacity-[0.06] pointer-events-none z-0 transition-transform duration-500 group-hover:scale-105" />
                 <summary class="relative z-10 focus:outline-none cursor-pointer list-none space-y-4">
-                    <div>
-                        <span class="text-xs font-semibold uppercase tracking-wider text-red-700 bg-red-50 px-2.5 py-1 rounded-lg">
-                            Teknofest
-                        </span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 group-hover:text-yellow-600 transition">
-                        İnsansız Su Altı Sistemleri Yarışması
-                    </h3>
-                    <p class="text-gray-600 text-sm leading-relaxed group-open:hidden line-clamp-3">
-                        Teknofest 2023 bünyesinde takım halinde geliştirdiğimiz, mekanik ve yazılımsal entegrasyon süreçlerini üstlendiğimiz su altı robotu projesi.
-                    </p>
+                    <div><span class="text-xs font-semibold uppercase tracking-wider text-red-700 bg-red-50 dark:text-red-300 dark:bg-red-950 px-2.5 py-1 rounded-lg">Teknofest</span></div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition">İnsansız Su Altı Sistemleri</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed group-open:hidden line-clamp-3">Teknofest 2023 bünyesinde takım halinde geliştirdiğimiz, mekanik ve yazılımsal entegrasyon süreçlerini üstlendiğimiz su altı robotu projesi.</p>
                 </summary>
-
-                <div class="relative z-10 mt-4 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4 space-y-2">
-                    <p>
-                        Teknofest 2023 İnsansız Su Altı Sistemleri Yarışması kapsamında ekibimizle birlikte özgün bir su altı aracı tasarladık ve ilk tasarım raporu aşamasını başarıyla geçtik.
-                    </p>
-                    <p>
-                        Yarışma sürecinde karşılaşılan teknik aksaklıklar ve donanım entegrasyonu problemleri, kriz yönetimi ve donanım arıza teşhisi (troubleshooting) alanında kritik tecrübeler kazanmamı sağladı.
-                    </p>
+                <div class="relative z-10 mt-4 text-gray-600 dark:text-gray-300 text-sm leading-relaxed border-t border-gray-100 dark:border-gray-800 pt-4 space-y-2">
+                    <p>Teknofest 2023 İnsansız Su Altı Sistemleri Yarışması kapsamında ekibimizle birlikte özgün bir su altı aracı tasarladık ve ilk tasarım raporu aşamasını başarıyla geçtik.</p>
+                    <p>Donanım entegrasyon süreçleri ve kriz yönetimi konularında kritik tecrübeler kazandım.</p>
                 </div>
-
-                <div class="relative z-10 mt-4 pt-3 flex items-center justify-between text-xs text-gray-400 font-medium border-t border-gray-100">
+                <div class="relative z-10 mt-4 pt-3 flex items-center justify-between text-xs text-gray-400 dark:text-gray-500 font-medium border-t border-gray-100 dark:border-gray-800">
                     <span>Aralık 2023</span>
-                    <span class="text-yellow-600 font-semibold group-open:hidden">Detaylar &darr;</span>
+                    <span class="text-yellow-600 dark:text-yellow-400 font-semibold group-open:hidden">Detaylar &darr;</span>
                 </div>
             </details>
 
-            <!-- 3. Proje Kartı  -->
-            <details class="group relative overflow-hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md select-none">
+            <!-- 3. Proje Kartı -->
+            <details class="group relative overflow-hidden bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md select-none">
                 <img src="https://i.hizliresim.com/4ysnumg.jpg" 
                      alt="Sistem Yönetimi Arka Plan" 
                      class="absolute inset-0 w-full h-full object-cover opacity-[0.06] pointer-events-none z-0 transition-transform duration-500 group-hover:scale-105" />
                 
                 <summary class="relative z-10 focus:outline-none cursor-pointer list-none space-y-4">
                     <div>
-                        <span class="text-xs font-semibold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-emerald-700 bg-emerald-50 dark:text-emerald-300 dark:bg-emerald-950 px-2.5 py-1 rounded-lg">
                             Web & Sistem Yönetimi
                         </span>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 group-hover:text-yellow-600 transition">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition">
                         Okul Web Sitesi Servis Yönetimi
                     </h3>
-                    <p class="text-gray-600 text-sm leading-relaxed group-open:hidden line-clamp-3">
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed group-open:hidden line-clamp-3">
                         Elbistan Bilim Teknik Koleji'ne bir tanıntım sayfası yapmakta görevli olan bir ekip üyesi olarak frontend geliştirme...
                     </p>
                 </summary>
 
-                <div class="relative z-10 mt-4 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4 space-y-2">
-                    <p>
-                        Elbistan Bilim Teknik Koleji'ne bir tanıntım sayfası yapmakta görevli olan bir ekip üyesi olarak frontend geliştirme konusunda deneyim kazandım.
-                    </p>
-                    <p>
-                        Bu süreçte edindiğimiz tecrübeler ve öğrendiklerimiz, gelecekteki projelerimiz için değerli bir temel oluşturdu.
+                <div class="relative z-10 mt-4 text-gray-600 dark:text-gray-300 text-sm leading-relaxed border-t border-gray-100 dark:border-gray-800 pt-4 space-y-2">
+                    <p>Elbistan Bilim Teknik Koleji'ne bir tanıntım sayfası yapmakta görevli olan bir ekip üyesi olarak frontend geliştirme konusunda deneyim kazandım.</p>
+                    <p>Bu süreçte edindiğimiz tecrübeler ve öğrendiklerimiz, gelecekteki projelerimiz için değerli bir temel oluşturdu.</p>
                 </div>
 
-                <div class="relative z-10 mt-4 pt-3 flex items-center justify-between text-xs text-gray-400 font-medium border-t border-gray-100">
-                    <span>Temmuz 2022</span>
-                    <span class="text-yellow-600 font-semibold group-open:hidden">Detaylar &darr;</span>
+                <div class="relative z-10 mt-4 pt-3 flex items-center justify-between text-xs text-gray-400 dark:text-gray-500 font-medium border-t border-gray-100 dark:border-gray-800">
+                    <span>Sürekli Geliştirme</span>
+                    <span class="text-yellow-600 dark:text-yellow-400 font-semibold group-open:hidden">Detaylar &darr;</span>
                 </div>
             </details>
 
         </div>
     </main>
 
-    <!-- FOOTER -->
-    <footer id="iletisim" class="bg-gray-900 text-gray-400 py-16 mt-16 border-t border-gray-800">
+    <footer id="iletisim" class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800 dark:bg-gray-950 dark:border-gray-800">
         <div class="max-w-5xl mx-auto px-6 text-center space-y-4">
-            <h3 class="text-white font-semibold text-lg">Bir proje fikriniz mi var veya iş birliği mi yapmak istiyorsunuz?</h3>
+            <h3 class="text-white font-semibold text-lg">Bir proje fikriniz mi var?</h3>
             <p class="text-sm max-w-md mx-auto text-gray-400">
-                Sorularınız, iş teklifleri veya sadece kahve eşliğinde teknoloji konuşmak için bana e-posta üzerinden ulaşabilirsiniz.
+                Sorularınız veya iş birliği süreçleri için bana e-posta üzerinden ulaşabilirsiniz.
             </p>
             <div class="pt-2">
                 <a href="mailto:ahmettaha1777@gmail.com" class="text-yellow-400 hover:text-yellow-300 font-medium border-b border-yellow-400/30 pb-0.5 transition">
                     ahmettaha1777@gmail.com
                 </a>
             </div>
-            <p class="text-xs text-gray-500 pt-8">&copy; 2026 Ahmet Gül. Tüm Hakları Saklıdır.</p>
+            <p class="text-xs text-gray-500 pt-6">&copy; 2026 Ahmet Gül. Tüm Hakları Saklıdır.</p>
         </div>
     </footer>
 
+    <script>
+        // Hamburger Menü Yönetimi
+        const menuToggleBtn = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggleBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Mobil menü linklerinden birine tıklandığında menüyü otomatik kapatır
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Tema Değiştirme Yapısı
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+    </script>
 </body>
 </html>

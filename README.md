@@ -1,5 +1,4 @@
-# 🚀 Gelişmiş Tailwind CSS Kişisel Portfolyo & Blog (Gece/Gündüz Modu Destekli)
-
+# 🚀 Gelişmiş Tailwind CSS Kişisel Portfolyo & Blog
 Bu proje; modern, minimalist ve tamamen **Tailwind CSS (Utility-First)** mimarisi kullanılarak geliştirilmiş, yerel hafıza (LocalStorage) destekli kişisel bir portfolyo ve blog ana sayfa tasarımıdır. Projede ham JavaScript kod kalabalığından kaçınılarak, dinamik özelliklerin büyük çoğunluğu doğrudan Tailwind CSS ve HTML5'in yerleşik yetenekleriyle çözülmüştür.
 
 ## ✨ Öne Çıkan Özellikler
